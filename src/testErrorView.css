@@ -14,7 +14,7 @@
   limitations under the License.
 */
 
-@import '@web/third_party/vscode/colors.css';
+/* Modified from Playwright source: removed unused @import of vscode/colors.css (no --vscode-* variables are referenced in this project). */
 
 .test-error-container {
   position: relative;

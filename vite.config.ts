@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// Modified from Playwright source: resolve aliases updated to use local vendor/ directory.
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { bundle } from './bundle';
@@ -27,8 +29,9 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@web': path.resolve(__dirname, '../web/src'),
-      '@isomorphic': path.resolve(__dirname, '../playwright-core/src/utils/isomorphic'),
+      '@web': path.resolve(__dirname, 'vendor/web'),
+      '@isomorphic': path.resolve(__dirname, 'vendor/isomorphic'),
+      '@testIsomorphic': path.resolve(__dirname, 'vendor/isomorphic'),
     },
   },
   build: {

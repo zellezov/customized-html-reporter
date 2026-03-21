@@ -1,0 +1,12 @@
+customized-html-reporter
+Copyright (c) Microsoft Corporation (original Playwright HTML reporter)
+
+This project is a derivative work based on the Playwright HTML reporter,
+originally developed by Microsoft Corporation and distributed as part of
+the Playwright project (https://github.com/microsoft/playwright).
+
+Original work:
+  Portions Copyright (c) Microsoft Corporation.
+  Portions Copyright 2017 Google Inc.
+  Licensed under the Apache License, Version 2.0
+

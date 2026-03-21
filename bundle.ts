@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import fs from 'fs';
-import path from 'path';
+// Modified from Playwright source: removed closeBundle copy to playwright-core output directory.
+
 import type { Plugin, UserConfig } from 'vite';
 
 export function bundle(): Plugin {
@@ -42,13 +42,6 @@ export function bundle(): Plugin {
       },
     },
     closeBundle: () => {
-      if (fs.existsSync(path.join(config.build!.outDir!, 'index.html'))) {
-        const targetDir = path.join(__dirname, '..', 'playwright-core', 'lib', 'vite', 'htmlReport');
-        fs.mkdirSync(targetDir, { recursive: true });
-        fs.copyFileSync(
-            path.join(config.build!.outDir!, 'index.html'),
-            path.join(targetDir, 'index.html'));
-      }
     },
   };
 }
