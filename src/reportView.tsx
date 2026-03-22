@@ -14,6 +14,8 @@
   limitations under the License.
 */
 
+// Modified from Playwright source: added QuarantineProvider and TestQuarantineWidget to the test files route.
+
 import type { FilteredStats, TestCase, TestCaseSummary, TestFile, TestFileSummary } from './types';
 import * as React from 'react';
 import './colors.css';
@@ -28,6 +30,9 @@ import { TestFilesHeader, TestFilesView } from './testFilesView';
 import './theme.css';
 import { useSetting } from '@web/uiUtils';
 import { Speedboard } from './speedboard';
+import { QuarantineProvider } from './quarantineContext';
+import { TestQuarantineWidget } from './testQuarantineWidget';
+import { FEATURES } from './features';
 
 declare global {
   interface Window {
@@ -141,19 +146,22 @@ export const ReportView: React.FC<{
     <main>
       {report && <GlobalFilterView stats={report.json().stats} filterText={filterText} setFilterText={setFilterText} />}
       <Route predicate={testFilesRoutePredicate}>
-        <TestFilesHeader
-          report={report?.json()}
-          filteredStats={filteredStats}
-          metadataVisible={metadataVisible}
-          toggleMetadataVisible={() => setMetadataVisible(visible => !visible)}
-          errorsVisible={errorsVisible}
-          setErrorsVisible={setErrorsVisible}/>
-        <TestFilesView
-          files={testModel.files}
-          expandedFiles={expandedFiles}
-          setExpandedFiles={setExpandedFiles}
-          projectNames={report?.json().projectNames || []}
-        />
+        <QuarantineProvider fullFiles={report?.json().files || []}>
+          <TestFilesHeader
+            report={report?.json()}
+            filteredStats={filteredStats}
+            metadataVisible={metadataVisible}
+            toggleMetadataVisible={() => setMetadataVisible(visible => !visible)}
+            errorsVisible={errorsVisible}
+            setErrorsVisible={setErrorsVisible}/>
+          {FEATURES.quarantine && <TestQuarantineWidget files={testModel.files} />}
+          <TestFilesView
+            files={testModel.files}
+            expandedFiles={expandedFiles}
+            setExpandedFiles={setExpandedFiles}
+            projectNames={report?.json().projectNames || []}
+          />
+        </QuarantineProvider>
       </Route>
       <Route predicate={speedboardRoutePredicate}>
         <TestFilesHeader

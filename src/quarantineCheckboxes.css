@@ -1,0 +1,28 @@
+/* Checkbox in chip-header (file level) and test rows */
+.quarantine-checkbox {
+  width: 13px;
+  flex-shrink: 0;
+  align-self: center;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+/* Placeholder occupies same space as .quarantine-checkbox when not shown */
+.quarantine-checkbox-placeholder {
+  display: inline-block;
+  width: 13px;
+  /* height matches input[type=checkbox] height from common.css */
+  height: 24px;
+  flex-shrink: 0;
+  align-self: center;
+  vertical-align: middle;
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+/* Shift the test-details-row to account for checkbox space (0px + 13px + 8px = 21px) */
+.test-file-test-quarantine .test-file-details-row {
+  margin-left: 36px;
+}

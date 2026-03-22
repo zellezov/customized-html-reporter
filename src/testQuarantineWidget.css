@@ -1,0 +1,80 @@
+.quarantine-widget-header {
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+}
+
+.quarantine-global-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.quarantine-global-label-disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.quarantine-global-label-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-fg-default);
+}
+
+.quarantine-checkbox-global {
+  width: 13px;
+  flex-shrink: 0;
+  cursor: pointer;
+  margin: 0;
+}
+
+.quarantine-global-label-disabled .quarantine-checkbox-global {
+  cursor: default;
+}
+
+.quarantine-widget-spacer {
+  flex: 1;
+}
+
+.quarantine-widget-button {
+  margin-right: 4px;
+  padding: 3px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  transition: background-color 0.1s ease;
+}
+
+.quarantine-widget-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* "Send to Quarantine" — solid red */
+.quarantine-widget-button-send {
+  color: #ffffff;
+  background-color: #cf222e;
+  border-color: #a40e26;
+}
+
+.quarantine-widget-button-send:not(:disabled):hover {
+  background-color: #a40e26;
+}
+
+/* "Remove from Quarantine" — muted amber */
+.quarantine-widget-button-remove {
+  color: var(--color-attention-fg);
+  background-color: var(--color-attention-subtle);
+  border-color: var(--color-attention-emphasis);
+}
+
+.quarantine-widget-button-remove:not(:disabled):hover {
+  background-color: var(--color-attention-muted);
+}

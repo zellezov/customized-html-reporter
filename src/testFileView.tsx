@@ -14,6 +14,8 @@
   limitations under the License.
 */
 
+// Modified from Playwright source: added quarantine checkboxes at file-level (chip beforeToggle) and test-level.
+
 import type { TestCaseSummary, TestFileSummary } from './types';
 import * as React from 'react';
 import { msToString } from '@isomorphic/formatUtils';
@@ -24,6 +26,8 @@ import './testFileView.css';
 import { video, image } from './icons';
 import { clsx } from '@web/uiUtils';
 import { ProjectAndTagLabelsView } from './labels';
+import { FEATURES } from './features';
+import { FileQuarantineCheckbox, TestQuarantineCheckbox } from './quarantineCheckboxes';
 
 export const TestFileView: React.FC<{
   file: TestFileSummary;
@@ -40,6 +44,7 @@ export const TestFileView: React.FC<{
       {file.fileName}
     </span>}
     footer={footer}
+    beforeToggle={FEATURES.quarantine ? <FileQuarantineCheckbox fileId={file.fileId} tests={file.tests} /> : undefined}
   >
     <TestCaseListView tests={file.tests} projectNames={projectNames} />
   </Chip>;
@@ -58,9 +63,10 @@ export const TestCaseListView: React.FC<{
       const result = run !== undefined ? test.results[run] : undefined;
       const href = testResultHref({ test, result }, searchParams);
       const selected = selectedTestId === test.testId;
-      return <div key={`test-${test.testId}`} className={clsx('test-file-test', 'test-file-test-outcome-' + test.outcome, selected && 'test-file-test-selected')} role='listitem' aria-current={selected}>
+      return <div key={`test-${test.testId}`} className={clsx('test-file-test', 'test-file-test-outcome-' + test.outcome, selected && 'test-file-test-selected', FEATURES.quarantine && 'test-file-test-quarantine')} role='listitem' aria-current={selected}>
         <div className='hbox' style={{ alignItems: 'flex-start' }}>
           <div className='hbox'>
+            {FEATURES.quarantine && <TestQuarantineCheckbox test={test} />}
             <span className='test-file-test-status-icon'>
               {statusIcon(test.outcome)}
             </span>

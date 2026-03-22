@@ -69,6 +69,16 @@ Copy `reporter.cjs` and `dist/index.html` into your own project and update the
 | `title` | `PLAYWRIGHT_HTML_TITLE` | _(none)_ | Custom report title |
 | `noSnippets` | `PLAYWRIGHT_HTML_NO_SNIPPETS` | `false` | Disable source code snippets |
 
+## Customizations
+
+Beyond the base Playwright HTML reporter, this project adds:
+
+- **Test quarantine management UI** — a selection widget above the test file list for marking
+  failing or flaky tests as quarantined, and removing previously quarantined (skipped) tests.
+  See [docs/quarantine-feature.md](docs/quarantine-feature.md) for full requirements and design.
+
+Feature flags are compile-time constants in `src/features.ts` — change and rebuild to toggle.
+
 ## How it works
 
 1. **`reporter.cjs`** — Node.js Playwright reporter. On test completion it:
