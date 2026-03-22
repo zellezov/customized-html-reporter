@@ -14,6 +14,9 @@
   limitations under the License.
 */
 
+// Modified from Playwright source: arbitrary metadata keys are always shown,
+// not gated behind the ?show-metadata-other URL parameter.
+
 import * as React from 'react';
 import './colors.css';
 import './common.css';
@@ -24,8 +27,6 @@ import type { CIInfo, GitCommitInfo, MetadataWithCommitInfo } from '@testIsomorp
 import { CopyToClipboardContainer } from './copyToClipboard';
 import { linkifyText } from '@web/renderUtils';
 import { formatUrl } from './utils';
-import { useSearchParams } from './links';
-
 class ErrorBoundary extends React.Component<React.PropsWithChildren<{}>, { error: Error | null, errorInfo: React.ErrorInfo | null }> {
   override state: { error: Error | null, errorInfo: React.ErrorInfo | null } = {
     error: null,
@@ -58,7 +59,7 @@ export const MetadataView: React.FC<{ metadata: Metadata }> = params => {
 
 const InnerMetadataView: React.FC<{ metadata: Metadata }> = params => {
   const commitInfo = params.metadata as MetadataWithCommitInfo;
-  const otherEntries = useSearchParams().has('show-metadata-other') ? Object.entries(params.metadata).filter(([key]) => !ignoreKeys.has(key)) : [];
+  const otherEntries = Object.entries(params.metadata).filter(([key]) => !ignoreKeys.has(key));
   const hasMetadata = commitInfo.ci || commitInfo.gitCommit || otherEntries.length > 0;
   if (!hasMetadata)
     return;
