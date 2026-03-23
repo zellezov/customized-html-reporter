@@ -3,13 +3,15 @@
 import * as React from 'react';
 import type { TestFileSummary } from './types';
 import { useQuarantine, getQuarantineSelectLabel } from './quarantineContext';
+import { QuarantineConfirmDialog } from './quarantineConfirmDialog';
 import { clsx } from '@web/uiUtils';
 import './chip.css';
 import './testQuarantineWidget.css';
 
 export const TestQuarantineWidget: React.FC<{ files: TestFileSummary[] }> = ({ files }) => {
-  const { quarantineFilter, isSelectable, toggleGroup, getGroupState, selectedTestIds, allFullSelectableIds } = useQuarantine();
+  const { quarantineFilter, isSelectable, toggleGroup, getGroupState, selectedTestIds, allFullSelectableIds, fullFiles } = useQuarantine();
   const globalCheckboxRef = React.useRef<HTMLInputElement>(null);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
 
   // Filtered (visible) IDs — used for toggling what the user sees.
   const allSelectableIds = React.useMemo(
@@ -53,10 +55,19 @@ export const TestQuarantineWidget: React.FC<{ files: TestFileSummary[] }> = ({ f
         <button
           disabled={!buttonEnabled}
           className={clsx('quarantine-widget-button', isRemove ? 'quarantine-widget-button-remove' : 'quarantine-widget-button-send')}
+          onClick={() => setDialogOpen(true)}
         >
           {buttonLabel}
         </button>
       </div>
+      <QuarantineConfirmDialog
+        isOpen={dialogOpen}
+        isRemove={isRemove}
+        selectedTestIds={selectedTestIds}
+        fullFiles={fullFiles}
+        onConfirm={() => setDialogOpen(false)}
+        onClose={() => setDialogOpen(false)}
+      />
     </div>
   );
 };

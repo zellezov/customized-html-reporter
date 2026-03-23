@@ -10,6 +10,8 @@ export type QuarantineContextValue = {
   selectedTestIds: Set<string>;
   quarantineFilter: QuarantineFilter;
   isSelectable: (outcome: string) => boolean;
+  // Full (unfiltered) file list — used by the confirmation dialog to resolve test names.
+  fullFiles: TestFileSummary[];
   // Full (unfiltered) selectable IDs — used as denominators for checkbox state display.
   fullSelectableIdsByFileId: Map<string, string[]>;
   allFullSelectableIds: string[];
@@ -137,6 +139,7 @@ export const QuarantineProvider: React.FC<{
       selectedTestIds,
       quarantineFilter,
       isSelectable,
+      fullFiles,
       fullSelectableIdsByFileId,
       allFullSelectableIds,
       toggleTest,
