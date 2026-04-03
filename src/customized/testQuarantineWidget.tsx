@@ -1,11 +1,11 @@
 // Custom addition: non-collapsible header row for quarantine test management.
 
 import * as React from 'react';
-import type { TestFileSummary } from './types';
+import type { TestFileSummary } from '../types';
 import { useQuarantine, getQuarantineSelectLabel } from './quarantineContext';
 import { QuarantineConfirmDialog } from './quarantineConfirmDialog';
 import { clsx } from '@web/uiUtils';
-import './chip.css';
+import '../chip.css';
 import './testQuarantineWidget.css';
 
 export const TestQuarantineWidget: React.FC<{ files: TestFileSummary[] }> = ({ files }) => {

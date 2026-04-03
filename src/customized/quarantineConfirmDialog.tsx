@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import type { TestFileSummary } from './types';
+import type { TestFileSummary } from '../types';
 import './quarantineConfirmDialog.css';
 
 type Props = {

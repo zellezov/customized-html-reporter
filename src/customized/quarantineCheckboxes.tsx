@@ -1,7 +1,7 @@
 // Custom addition: quarantine checkbox components for file-level and test-level selection.
 
 import * as React from 'react';
-import type { TestCaseSummary } from './types';
+import type { TestCaseSummary } from '../types';
 import { useQuarantine, getQuarantineSelectLabel } from './quarantineContext';
 import './quarantineCheckboxes.css';
 

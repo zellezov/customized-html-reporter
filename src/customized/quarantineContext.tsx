@@ -1,8 +1,8 @@
 // Custom addition: React context for quarantine feature — filter detection and selection state.
 
 import * as React from 'react';
-import type { TestFileSummary } from './types';
-import { useSearchParams } from './links';
+import type { TestFileSummary } from '../types';
+import { useSearchParams } from '../links';
 
 export type QuarantineFilter = 'all' | 'passed' | 'failed' | 'flaky' | 'skipped';
 

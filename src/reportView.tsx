@@ -30,9 +30,9 @@ import { TestFilesHeader, TestFilesView } from './testFilesView';
 import './theme.css';
 import { useSetting } from '@web/uiUtils';
 import { Speedboard } from './speedboard';
-import { QuarantineProvider } from './quarantineContext';
-import { TestQuarantineWidget } from './testQuarantineWidget';
-import { FEATURES } from './features';
+import { QuarantineProvider } from './customized/quarantineContext';
+import { TestQuarantineWidget } from './customized/testQuarantineWidget';
+import { FEATURES } from './customized/features';
 
 declare global {
   interface Window {

@@ -27,8 +27,8 @@ import './testFileView.css';
 import { video, image } from './icons';
 import { clsx } from '@web/uiUtils';
 import { ProjectAndTagLabelsView } from './labels';
-import { FEATURES } from './features';
-import { FileQuarantineCheckbox, TestQuarantineCheckbox } from './quarantineCheckboxes';
+import { FEATURES } from './customized/features';
+import { FileQuarantineCheckbox, TestQuarantineCheckbox } from './customized/quarantineCheckboxes';
 
 export const TestFileView: React.FC<{
   file: TestFileSummary;
